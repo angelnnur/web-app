@@ -1,0 +1,108 @@
+@model Принятые_заявления
+@{
+    Layout = "LayoutAdmin";
+}
+<style>
+    button {
+        width: 300px;
+        height: 45px;
+        border: 0.1px solid black;
+        margin: 10px;
+    }
+    .form_box {
+        background: white;
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        font-size: 26px;
+    }
+
+        .form_box label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #444444;
+            display: block;
+        }
+        .form_box input {
+            display: block;
+            border: 1px solid black;
+            font-size: 14px;
+            color: #444444;
+            padding: 7px 7px 8px;
+            width: 500px;
+            margin-bottom: 20px;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+        }
+            .form_box input.empty_field {
+                border-width: 2px;
+                border-color: red;
+            }
+        .form_box .btn_submit {
+            border: none;
+            width: 180px;
+            text-align: center;
+            background: #07a6e6;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            height: 35px;
+            line-height: 28px;
+            padding: 0;
+        }
+</style>
+<form asp-action="EditPrinZayav" asp-controller="Admin">
+    <div class="form_box">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group">
+            <label asp-for="id_pz" class="control-label">ID-заявления</label>
+            <input type="text" asp-for="id_pz" class="form-control" readonly="readonly" autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="num_zayav" class="control-label">Регистрационный номер заявления</label>
+            <input type="text" asp-for="num_zayav" class="rfield" id="num_zayav" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="date_start" class="control-label">Дата подачи заявления</label>
+            <input type="text" asp-for="date_start" class="rfield" id="date_start" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="id_s" class="control-label">ID-сотрудника</label>
+            <input type="text" asp-for="id_s" class="rfield" id="id_s" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="id_z" class="control-label">ID-заявителя</label>
+            <input type="text" asp-for="id_z" class="rfield" id="id_z" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="id_f" class="control-label">ID-филиала</label>
+            <input type="text" asp-for="id_f" class="rfield" id="id_f" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label asp-for="id_f" class="control-label">Обработано</label>
+            <input type="text" asp-for="obrabotka" class="rfield" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Сохранить</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $('document').ready(function () {
+        $('#button').on('click', function () {
+            $('.form_box .rfield').each(function () {
+                if ($(this).val() != '') {
+                    console.log(32);
+                    // Если поле не пустое удаляем класс-указание
+                    $(this).removeClass('empty_field');
+                } else {
+                    console.log(33);
+                    // Если поле пустое добавляем класс-указание
+                    $(this).addClass('empty_field');
+                }
+            });
+        });
+    });
+</script>

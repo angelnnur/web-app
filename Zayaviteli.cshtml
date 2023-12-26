@@ -1,0 +1,91 @@
+<style>
+    table {
+        width: 100%;
+        text-align: center;
+        border-bottom: 2px solid #dfdfdf;
+        border-radius: 6px;
+        border-collapse: separate;
+        border-spacing: 0px;
+        line-height: 45px;
+    }
+
+        table thead tr {
+            color: #ffffff;
+            font-weight: bold;
+            background: #c83240;
+        }
+
+        table tr td {
+            border-right: 1px solid #dfdfdf;
+        }
+
+            table tr td:last-child {
+                border-right: 0px;
+            }
+
+        table tbody tr:nth-child(1n) {
+            background: #f6f6f6;
+        }
+
+        table tbody tr:nth-child(2n) {
+            background: #e6e6e6;
+        }
+
+        table tbody tr:hover {
+            background: #ffe8e8;
+            transition-duration: 0.6s;
+        }
+
+    #searcht {
+        border: 0.001px solid black;
+        width: 60%;
+        height: 25px;
+        margin: 10px;
+    }
+
+    #searchb {
+        width: 100px;
+        height: 27px;
+        border: 0.15px solid;
+        align-content: center;
+        font-size: 15px;
+    }
+</style>
+<div style="font-size:16px">
+    <h3>Заявители</h3>
+
+    <form asp-controller="Home" asp-action="Zayaviteli" style="padding: 10px; margin:auto">
+        <p>
+            Id-заявителя или ФИО: <input type="text" name="search_text" id="searcht">
+            <input type="submit" value="Найти" id="searchb" />
+        </p>
+    </form>
+    
+    <table>
+        <tr>
+            <th>ID-заявителя</th>
+            <th>ФИО</th>
+            <th>Дата рождения</th>
+            <th>Гражданство</th>
+            <th>Паспорт-серия</th>
+            <th>Паспорт-номер</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Почта</th>
+        </tr>
+        @foreach (var Заявители in Model)
+        {
+            <tr>
+                <td>@Заявители.id_z</td>
+                <td>@Заявители.fio</td>
+                <td>@Заявители.dateB.ToShortDateString()</td>
+                <td>@Заявители.nationality</td>
+                <td>@Заявители.passport_ser</td>
+                <td>@Заявители.passport_num</td>
+                <td>@Заявители.addres</td>
+                <td>@Заявители.phone</td>
+                <td>@Заявители.email</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,148 @@
+@model Сотрудники
+@{
+    Layout = "LayoutAdmin";
+}
+<style>
+    button {
+        width: 300px;
+        height: 45px;
+        border: 0.1px solid black;
+        margin: 10px;
+    }
+
+    .form_box {
+        background: white;
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        font-size: 26px;
+    }
+
+        .form_box label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #444444;
+            display: block;
+        }
+
+        .form_box input {
+            display: block;
+            border: 1px solid black;
+            font-size: 14px;
+            color: #444444;
+            padding: 7px 7px 8px;
+            width: 500px;
+            margin-bottom: 20px;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+        }
+
+            .form_box input.empty_field {
+                border-width: 2px;
+                border-color: red;
+            }
+
+        .form_box .btn_submit {
+            border: none;
+            width: 180px;
+            text-align: center;
+            background: #07a6e6;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            height: 35px;
+            line-height: 28px;
+            padding: 0;
+        }
+</style>
+<form asp-action="EditSotrudniki" asp-controller="Admin">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="form_box">
+        <div class="form-group">
+            <label class="control-label">Id-сотрудника</label>
+            <input asp-for="id_s" class="form-control" id="name" readonly="readonly" autocomplete="off"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Фамилия *</label>
+            <input type="text" asp-for="Familia" id="name" class="rfield" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Имя *</label>
+            <input type="text" asp-for="Imya" id="name" class="rfield" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Отчество</label>
+            <input type="text" asp-for="Otchestvo" id="name" autocomplete="off"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Дата рождения *</label>
+            <input type="text" asp-for="dateB" id="name" class="rfield" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Страна *</label>
+            <input type="text" asp-for="Strana" id="name" class="rfield" required autocomplete="off" />
+        </div>
+         <div class="form-group">
+                <label class="control-label">Город *</label>
+                <input type="text" asp-for="Gorod" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Улица *</label>
+                <input type="text" asp-for="Ulitsa" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Дом *</label>
+                <input type="text" asp-for="dom" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Квартира</label>
+                <input type="text" asp-for="Kvartira" id="name"  autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Номер телефона *</label>
+                <input type="text" asp-for="phone" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Роль *</label>
+                <input type="text" asp-for="Role" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Электронная почта *</label>
+                <input type="text" asp-for="Email" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Пароль</label>
+                <input type="text" asp-for="password" id="name" autocomplete="off"  />
+            </div>
+            <div class="form-group">
+                <label asp-for="id_f" class="control-label">ID-филиала *</label>
+                <input type="text" asp-for="id_f" id="name" class="rfield" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Сохранить</button>
+            </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $('document').ready(function () {
+        $('#button').on('click', function () {
+            $('.form_box .rfield').each(function () {
+                if ($(this).val() != '') {
+                    console.log(32);
+                    // Если поле не пустое удаляем класс-указание
+                    $(this).removeClass('empty_field');
+                } else {
+                    console.log(33);
+                    // Если поле пустое добавляем класс-указание
+                    $(this).addClass('empty_field');
+                }
+            });
+        });
+    });
+
+    document.getElementById('name').addEventListener('mouseenter', function (event) {
+        event.target.setAttribute('autocomplete', 'off')
+    });
+</script>

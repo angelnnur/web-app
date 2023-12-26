@@ -1,0 +1,101 @@
+@model Филиалы
+@{
+    Layout = "LayoutAdmin";
+}
+<style>
+    button {
+        width: 300px;
+        height: 45px;
+        border: 0.1px solid black;
+        margin: 10px;
+    }
+    .form_box {
+        background: white;
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        font-size: 26px;
+    }
+        .form_box label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #444444;
+            display: block;
+        }
+
+        .form_box input {
+            display: block;
+            border: 1px solid black;
+            font-size: 14px;
+            color: #444444;
+            padding: 7px 7px 8px;
+            width: 500px;
+            margin-bottom: 20px;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+        }
+
+            .form_box input.empty_field {
+                border-width: 2px;
+                border-color: red;
+            }
+
+        .form_box .btn_submit {
+            border: none;
+            width: 180px;
+            text-align: center;
+            background: #07a6e6;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            height: 35px;
+            line-height: 28px;
+            padding: 0;
+        }
+</style>
+<form asp-action="EditFilial" asp-controller="Admin" class="auth" method="post" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="form_box">
+        <div class="form-group">
+            <label class="control-label">Id-филиала</label>
+            <input asp-for="id_f" id="name" class="rfield" required autocomplete="off" readonly="readonly" />
+            <span asp-validation-for="id_f"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Наименование филиала</label>
+            <input asp-for="names" id="name" class="rfield" required autocomplete="off" />
+            <span asp-validation-for="names"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Адрес филиала</label>
+            <input asp-for="addres" id="name" class="rfield" required autocomplete="off" />
+            <span asp-validation-for="addres"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Сохранить</button>
+        </div>
+        </div>
+</form>
+<script type="text/javascript">
+    $('document').ready(function () {
+        $('#button').on('click', function () {
+            $('.form_box .rfield').each(function () {
+                if ($(this).val() != '') {
+                    console.log(32);
+                    // Если поле не пустое, удаляем класс-указание
+                    $(this).removeClass('empty_field');
+                } else {
+                    console.log(33);
+                    // Если поле пустое добавляем класс-указание
+                    $(this).addClass('empty_field');
+                }
+            });
+        });
+    });
+    
+    document.getElementById('name').addEventListener('mouseenter', function (event) {
+        event.target.setAttribute('autocomplete', 'off')
+    });
+</script>

@@ -1,0 +1,87 @@
+<style>
+    table {
+        width: 100%;
+        text-align: center;
+        border-bottom: 2px solid #dfdfdf;
+        border-radius: 6px;
+        border-collapse: separate;
+        border-spacing: 0px;
+        line-height:45px;
+    }
+
+        table thead tr {
+            color: #ffffff;
+            font-weight: bold;
+            background: #c83240;
+        }
+
+        table tr td {
+            border-right: 1px solid #dfdfdf;
+        }
+
+            table tr td:last-child {
+                border-right: 0px;
+            }
+
+        table tbody tr:nth-child(1n) {
+            background: #f6f6f6;
+        }
+
+        table tbody tr:nth-child(2n) {
+            background: #e6e6e6;
+        }
+
+        table tbody tr:hover {
+            background: #ffe8e8;
+            transition-duration: 0.6s;
+        }
+    #searcht {
+        border: 0.001px solid black;
+        width: 60%;
+        height: 25px;
+        margin:10px;
+    }
+    #searchb {
+        width: 100px;
+        height: 27px;
+        border: 0.15px solid;
+        align-content: center;
+        font-size: 15px;
+    }
+</style>
+<div style="font-size:16px">
+    <h3>Принятые заявления</h3>
+
+    <form asp-controller="Home" asp-action="Index" style="padding: 10px; margin:auto">
+        <p>
+            Регистрационный номер заявления: <input type="text" name="search_text" id="searcht">
+            <input type="submit" value="Найти" id="searchb"/>
+        </p>
+    </form>
+
+    <table class="table">
+        <tr>
+            <th>ID-заявления</th>
+            <th>Регистрационный номер заявления</th>
+            <th>Дата подачи заявления</th>
+            <th>ID-Заявителя</th>
+            <th>ID-Сотрудника</th>
+            <th>ID-Филиала</th>
+            <th>Обработано</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var Принятые_заявления in Model)
+        {
+        <tr>
+            <td>@Принятые_заявления.id_pz</td>
+            <td>@Принятые_заявления.num_zayav</td>
+            <td>@Принятые_заявления.date_start.ToShortDateString()</td>
+            <td>@Принятые_заявления.id_z</td>
+            <td>@Принятые_заявления.id_s</td>
+            <td>@Принятые_заявления.id_f</td>
+            <td>@Принятые_заявления.obrabotka</td>
+        </tr>
+        }
+    </table>
+</div>
